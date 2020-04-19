@@ -2,7 +2,7 @@ const { desktopCapturer, remote } = require('electron');
 const { writeFile } = require('fs');
 const { dialog, Menu } = remote;
 
-// Global state
+// holds video pieces
 let mediaRecorder; // MediaRecorder instance to capture footage
 const recordedChunks = [];
 
@@ -94,7 +94,7 @@ async function handleStop(e) {
     buttonLabel: 'Save video',
     defaultPath: `vid-${Date.now()}.webm`
   });
-
+  //checks if file path exists, then writes
   if (filePath) {
     writeFile(filePath, buffer, () => console.log('video saved successfully!'));
   }
